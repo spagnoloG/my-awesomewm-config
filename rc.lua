@@ -325,6 +325,12 @@ globalkeys = gears.table.join(
     awful.util.spawn("spotify") end,
                 {description = "launch spotify", group = "launcher"}),
 
+    -- Pcmanfm
+    awful.key({ modkey },            "f",     function () 
+        awful.util.spawn("pcmanfm") end,
+                    {description = "launch spotify", group = "launcher"}),
+    
+
     --awful.key({ modkey }, "x",
               --function ()
                   --awful.prompt.run {
@@ -341,12 +347,12 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
+    --awful.key({ modkey,           }, "f",
+        --function (c)
+            --c.fullscreen = not c.fullscreen
+            --c:raise()
+        --end,
+        --{description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey,           }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
