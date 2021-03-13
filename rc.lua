@@ -337,7 +337,7 @@ globalkeys = gears.table.join(
     
     awful.key({ modkey },            "Print",     function () 
         awful.util.spawn("flameshot gui") end,
-                    {description = "Start a manual capture in GUI mode", group = "launcher"}),
+                    {description = "Start a manual capture in GUI mode", group = "screenshot"}),
 
     
 

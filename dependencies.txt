@@ -1,0 +1,6 @@
+flameshot
+pcmanfm
+dmenu
+nitrogen
+brave
+picom
