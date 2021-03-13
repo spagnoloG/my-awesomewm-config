@@ -330,6 +330,16 @@ globalkeys = gears.table.join(
         awful.util.spawn("pcmanfm") end,
                     {description = "launch spotify", group = "launcher"}),
     
+    -- Flameshot
+    awful.key({ },            "Print",     function () 
+        awful.util.spawn("flameshot full") end,
+                    {description = "Capture the entire desktop", group = "screenshot"}),
+    
+    awful.key({ modkey },            "Print",     function () 
+        awful.util.spawn("flameshot gui") end,
+                    {description = "Start a manual capture in GUI mode", group = "launcher"}),
+
+    
 
     --awful.key({ modkey }, "x",
               --function ()
