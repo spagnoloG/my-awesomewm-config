@@ -586,5 +586,7 @@ awful.spawn.with_shell("~/.config/awesome/dell-monitors.sh")
 
 -- Autostart
 awful.spawn.with_shell("picom")
+-- Start polybar
+awful.spawn.with_shell("~/.config/awesome/launch-polybar.sh")
 -- Set wallpaper
 awful.spawn.with_shell("~/.config/awesome/set-wallpaper.sh")
