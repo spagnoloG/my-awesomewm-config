@@ -62,7 +62,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
+    --awful.layout.suit.floating,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
@@ -588,5 +588,7 @@ awful.spawn.with_shell("~/.config/awesome/dell-monitors.sh")
 awful.spawn.with_shell("picom")
 -- Start polybar
 awful.spawn.with_shell("~/.config/awesome/launch-polybar.sh")
+-- Start network manager applet
+awful.spawn.with_shell("nm-applet")
 -- Set wallpaper
 awful.spawn.with_shell("~/.config/awesome/set-wallpaper.sh")
