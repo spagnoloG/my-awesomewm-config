@@ -579,10 +579,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps
-beautiful.useless_gap = 12
+beautiful.useless_gap = 6
 
 -- Set monitor setup
-awful.spawn.with_shell("~/.config/awesome/dell-monitors.sh")
+awful.spawn.with_shell("~/.config/awesome/thinkpad-m.sh")
 
 -- Autostart
 awful.spawn.with_shell("picom")
