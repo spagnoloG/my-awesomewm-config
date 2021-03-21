@@ -45,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+--beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -80,6 +80,10 @@ awful.layout.layouts = {
 }
 -- }}}
 
+-- beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/default/theme.lua")
+-- beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
