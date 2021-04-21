@@ -48,7 +48,7 @@ end
 --beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "termite"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -63,9 +63,9 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile,
     --awful.layout.suit.floating,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -319,9 +319,9 @@ globalkeys = gears.table.join(
     awful.util.spawn("dmenu_run") end,
               {description = "launch dmenu", group = "launcher"}),
     
-    -- Brave
+    -- Firefox
     awful.key({ modkey },            "b",     function () 
-    awful.util.spawn("brave") end,
+    awful.util.spawn("firefox") end,
               {description = "launch brave browser", group = "launcher"}),
 
     -- Spotify
@@ -345,7 +345,14 @@ globalkeys = gears.table.join(
 
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+    --volume
+    awful.key({ }, "#122", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume -4") end),
+    awful.key({ }, "#123", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume +4") end),
+    awful.key({ }, "#121", function () awful.util.spawn("sh /home/gasper/.config/awesome/scriptskeybindings.sh mute") end),
+    --brightness
+    awful.key({ }, "#232", function () awful.util.spawn("sh /home/gasper/scripts/keybindings.sh manipulate_display_brightness 5%-") end),
+    awful.key({ }, "#233", function () awful.util.spawn("sh /home/gasper/scripts/keybindings.sh manipulate_display_brightness +5%") end)
 )
 
 clientkeys = gears.table.join(
@@ -583,10 +590,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps
-beautiful.useless_gap = 6
+beautiful.useless_gap = 8
 
 -- Set monitor setup
-awful.spawn.with_shell("~/.config/awesome/thinkpad-m.sh")
+awful.spawn.with_shell("~/.config/awesome/dp-monitors.sh")
 
 -- Autostart
 awful.spawn.with_shell("picom")
