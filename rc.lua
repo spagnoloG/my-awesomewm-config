@@ -593,7 +593,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 beautiful.useless_gap = 8
 
 -- Set monitor setup
-awful.spawn.with_shell("~/.config/awesome/dp-monitors.sh")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh dp")
 
 -- Autostart
 awful.spawn.with_shell("picom")
@@ -602,4 +602,4 @@ awful.spawn.with_shell("picom")
 -- Start network manager applet
 awful.spawn.with_shell("nm-applet")
 -- Set wallpaper
-awful.spawn.with_shell("~/.config/awesome/set-wallpaper.sh")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/set-wallpaper.sh")
