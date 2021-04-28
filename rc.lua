@@ -14,6 +14,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+-- Battery widget
+local battery_widget = require("battery-widget.battery")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -48,7 +51,7 @@ end
 --beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -215,6 +218,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
+            battery_widget(),
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -349,10 +353,10 @@ globalkeys = gears.table.join(
     --volume
     awful.key({ }, "#122", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume -4") end),
     awful.key({ }, "#123", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume +4") end),
-    awful.key({ }, "#121", function () awful.util.spawn("sh /home/gasper/.config/awesome/scriptskeybindings.sh mute") end),
+    --awful.key({ }, "#121", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh mute") end),
     --brightness
-    awful.key({ }, "#232", function () awful.util.spawn("sh /home/gasper/scripts/keybindings.sh manipulate_display_brightness 5%-") end),
-    awful.key({ }, "#233", function () awful.util.spawn("sh /home/gasper/scripts/keybindings.sh manipulate_display_brightness +5%") end)
+    awful.key({ }, "#232", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh lower_brightness") end),
+    awful.key({ }, "#233", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh higher_brightness") end)
 )
 
 clientkeys = gears.table.join(
@@ -590,10 +594,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps
-beautiful.useless_gap = 8
+beautiful.useless_gap = 4 
 
 -- Set monitor setup
-awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh dp")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh homeL")
 
 -- Autostart
 awful.spawn.with_shell("picom")

@@ -12,10 +12,18 @@ unmute() {
 	pulsemixer --unmute
 }
 
-manipulate_display_brightness(){	
-	brightnessctl s $1
+lower_brightness() {
+	current_brightness=$(brightnessctl -q -d intel_backlight g)
+	if [ $current_brightness < 961 ]; then
+		brightnessctl -q -d intel_backlight s 5%-
+	else
+		brightnessctl -q -d intel_backlight s 5%-
+	fi
 }
 
+higher_brightness() {	
+	brightnessctl -q -d intel_backlight s +5%
+}
 
 # First parameter is binded function
 # Second parameter is factor
