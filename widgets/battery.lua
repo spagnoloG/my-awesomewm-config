@@ -8,6 +8,9 @@
 -- @copyright 2017 Pavel Makhov
 -------------------------------------------------
 
+--  !!! IMPORTANT !!! ---
+-- https://github.com/horst3180/arc-icon-theme#installation---
+
 local awful = require("awful")
 local naughty = require("naughty")
 local watch = require("awful.widget.watch")

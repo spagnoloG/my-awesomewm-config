@@ -15,7 +15,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Battery widget
-local battery_widget = require("battery-widget.battery")
+local battery_widget = require("widgets.battery")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -327,7 +327,7 @@ globalkeys = gears.table.join(
 
     -- Rofi ssh picker      
     awful.key({ modkey },            "z",     function () 
-    awful.util.spawn("rofi -show window") end,
+    awful.util.spawn("rofi -show ssh") end,
               {description = "switch windows", group = "launcher"}),
     
     -- Firefox
@@ -355,8 +355,8 @@ globalkeys = gears.table.join(
                     {description = "Start a manual capture in GUI mode", group = "screenshot"}),
 
     -- Power Options
-    awful.key({ modkey, "Shift" },            "l",     function ()
-	awful.util.spawn("i3lock lock") end,
+    awful.key({ modkey, "Shift" },            "1",     function ()
+	    awful.util.spawn("i3lock lock -c 181818") end,
 		    {description = "Lock screen", group = "Power options"}),
     --volume
     awful.key({ }, "#122", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume -4") end),
@@ -364,7 +364,12 @@ globalkeys = gears.table.join(
     --awful.key({ }, "#121", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh mute") end),
     --brightness
     awful.key({ }, "#232", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh lower_brightness") end),
-    awful.key({ }, "#233", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh higher_brightness") end)
+    awful.key({ }, "#233", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh higher_brightness") end),
+
+    -- Network selection
+    awful.key({ modkey, "Shift" },            "n",     function ()
+	    awful.util.spawn("rofi-wifi-menu") end,
+		    {description = "Choose network", group = "System management"})
 )
 
 clientkeys = gears.table.join(
@@ -602,10 +607,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps
-beautiful.useless_gap = 4 
+beautiful.useless_gap = 6
 
 -- Set monitor setup
-awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh vm")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh lj")
 
 -- Autostart
 awful.spawn.with_shell("picom")
