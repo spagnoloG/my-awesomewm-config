@@ -14,8 +14,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Battery widget
+-- Widgets
 local battery_widget = require("widgets.battery")
+local spotify_widget = require("widgets.spotify")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -219,6 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             battery_widget(),
+            spotify_widget(),
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -328,7 +330,7 @@ globalkeys = gears.table.join(
     -- Rofi ssh picker      
     awful.key({ modkey },            "z",     function () 
     awful.util.spawn("rofi -show ssh") end,
-              {description = "switch windows", group = "launcher"}),
+              {description = "Connect to ssh", group = "launcher"}),
     
     -- Firefox
     awful.key({ modkey },            "b",     function () 
@@ -343,7 +345,7 @@ globalkeys = gears.table.join(
     -- Pcmanfm
     awful.key({ modkey },            "p",     function () 
         awful.util.spawn("pcmanfm") end,
-                    {description = "launch spotify", group = "launcher"}),
+                    {description = "launch filemanager", group = "launcher"}),
     
     -- Flameshot
     awful.key({ },            "Print",     function () 
@@ -355,9 +357,17 @@ globalkeys = gears.table.join(
                     {description = "Start a manual capture in GUI mode", group = "screenshot"}),
 
     -- Power Options
-    awful.key({ modkey, "Shift" },            "1",     function ()
+    awful.key({ modkey, "Shift" },            "z",     function ()
 	    awful.util.spawn("i3lock lock -c 181818") end,
 		    {description = "Lock screen", group = "Power options"}),
+
+    awful.key({ modkey, "Shift" },            "x",     function ()
+        awful.util.spawn("systemctl suspend") end,
+            {description = "Suspend system", group = "Power options"}),
+    
+    awful.key({ modkey, "Shift" },            "c",     function ()
+        awful.util.spawn("systemctl hibernate") end,
+            {description = "Put system into hibernation mode", group = "Power options"}),
     --volume
     awful.key({ }, "#122", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume -4") end),
     awful.key({ }, "#123", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume +4") end),
@@ -607,7 +617,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps
-beautiful.useless_gap = 6
+beautiful.useless_gap = 5
 
 -- Set monitor setup
 awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh lj")
