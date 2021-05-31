@@ -1,8 +1,16 @@
-flameshot
-pcmanfm
+flameshot - gui screenshot tool
+pcmanfm - file manager
 dmenu
 nitrogen
 brave
 picom
-polybar
 nm-applet
+// Kde applications theming
+kvantum
+qt5ct
+// Gtk theming
+lxappearance
+// icons
+papirus-icon-theme
+// change rofi theme
+rofi-theme-selector

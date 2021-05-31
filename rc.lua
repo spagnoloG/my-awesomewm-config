@@ -51,8 +51,8 @@ end
 --beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -258,9 +258,6 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
-
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
@@ -299,8 +296,8 @@ globalkeys = gears.table.join(
               {description = "decrease the number of master clients", group = "layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "increase the number of columns", group = "layout"}),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
+    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( -1, nil, true)    end,
+	      {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
@@ -318,15 +315,25 @@ globalkeys = gears.table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Dmenu
+    -- Rofi app launcher
     awful.key({ modkey },            "r",     function () 
-    awful.util.spawn("dmenu_run") end,
-              {description = "launch dmenu", group = "launcher"}),
+    awful.util.spawn("rofi -show drun -show-icons") end,
+              {description = "launch rofi (Search for aplications)", group = "launcher"}),
+
+    -- Rofi window switcher
+    awful.key({ modkey },            "w",     function () 
+    awful.util.spawn("rofi -show window") end,
+              {description = "switch windows", group = "launcher"}),
+
+    -- Rofi ssh picker      
+    awful.key({ modkey },            "z",     function () 
+    awful.util.spawn("rofi -show window") end,
+              {description = "switch windows", group = "launcher"}),
     
     -- Firefox
     awful.key({ modkey },            "b",     function () 
-    awful.util.spawn("firefox") end,
-              {description = "launch brave browser", group = "launcher"}),
+    awful.util.spawn("firefox-beta") end,
+              {description = "launch firefox", group = "launcher"}),
 
     -- Spotify
     awful.key({ modkey },            "a",     function () 
@@ -334,7 +341,7 @@ globalkeys = gears.table.join(
                 {description = "launch spotify", group = "launcher"}),
 
     -- Pcmanfm
-    awful.key({ modkey },            "f",     function () 
+    awful.key({ modkey },            "p",     function () 
         awful.util.spawn("pcmanfm") end,
                     {description = "launch spotify", group = "launcher"}),
     
@@ -347,9 +354,10 @@ globalkeys = gears.table.join(
         awful.util.spawn("flameshot gui") end,
                     {description = "Start a manual capture in GUI mode", group = "screenshot"}),
 
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+    -- Power Options
+    awful.key({ modkey, "Shift" },            "l",     function ()
+	awful.util.spawn("i3lock lock") end,
+		    {description = "Lock screen", group = "Power options"}),
     --volume
     awful.key({ }, "#122", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume -4") end),
     awful.key({ }, "#123", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume +4") end),
@@ -360,12 +368,12 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
-    --awful.key({ modkey,           }, "f",
-        --function (c)
-            --c.fullscreen = not c.fullscreen
-            --c:raise()
-        --end,
-        --{description = "toggle fullscreen", group = "client"}),
+    awful.key({ modkey,           }, "f",
+        function (c)
+            c.fullscreen = not c.fullscreen
+            c:raise()
+        end,
+        {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey,           }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
@@ -597,7 +605,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 beautiful.useless_gap = 4 
 
 -- Set monitor setup
-awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh homeL")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh vm")
 
 -- Autostart
 awful.spawn.with_shell("picom")

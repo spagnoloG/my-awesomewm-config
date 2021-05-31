@@ -24,5 +24,10 @@ homeR () {
     xrandr --output eDP-1 --right-of HDMI-2 
 }
 
+# VM development mode
+vm () {
+    xrandr -s 1600x900
+}
+
 # Function call
 $1
