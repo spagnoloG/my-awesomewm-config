@@ -14,7 +14,7 @@ local theme = {}
 theme.font          = "Ubuntu Mono 8"
 
 theme.bg_normal     = "#1e1e1e"
-theme.bg_focus      = "#00688B"
+theme.bg_focus      = "#195953"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -27,7 +27,7 @@ theme.fg_minimize   = "#ffffff"
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1)
 theme.border_normal = "#696969"
-theme.border_focus  = "#ff004f"
+theme.border_focus  = "#0c2c29"
 theme.border_marked = "#ff004f"
 
 -- There are other variable sets
