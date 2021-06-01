@@ -17,6 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Widgets
 local battery_widget = require("widgets.battery")
 local spotify_widget = require("widgets.spotify")
+local cpu_widget = require("widgets.cpu")
+local todo_widget = require("widgets.todo")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -218,10 +220,12 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            battery_widget(),
             spotify_widget(),
             wibox.widget.systray(),
+            mykeyboardlayout,            
+            todo_widget(),
+            cpu_widget(),
+            battery_widget(),
             mytextclock,
             s.mylayoutbox,
         },
@@ -630,3 +634,6 @@ awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nm-applet")
 -- Set wallpaper
 awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/set-wallpaper.sh")
+-- Start polkit agent
+awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &")
+

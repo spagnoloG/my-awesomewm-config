@@ -5,12 +5,17 @@ nitrogen
 brave
 picom
 nm-applet
-// Kde applications theming
+// Qt applications theming
 kvantum
 qt5ct
 // Gtk theming
 lxappearance
 // icons
 papirus-icon-theme
-// change rofi theme
+// dim display
+brightnessctl
+// polkit agent
+polkit-gnome
+*change rofi theme
 rofi-theme-selector
+
