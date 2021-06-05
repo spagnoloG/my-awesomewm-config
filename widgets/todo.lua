@@ -7,6 +7,8 @@
 -- @copyright 2020 Pavel Makhov
 -------------------------------------------------
 
+-- ICONS ARE CHANGED!!!dele
+
 local awful = require("awful")
 local wibox = require("wibox")
 local json = require("json")
@@ -85,7 +87,7 @@ local popup = awful.popup{
 local add_button = wibox.widget {
     {
         {
-            image = WIDGET_DIR .. '/list-add-symbolic.svg',
+            image = '/usr/share/icons/Arc/actions/24/list-add.png',
             resize = false,
             widget = wibox.widget.imagebox
         },
@@ -141,7 +143,7 @@ local function worker(user_args)
 
     local args = user_args or {}
 
-    local icon = args.icon or WIDGET_DIR .. '/checkbox-checked-symbolic.svg'
+    local icon = args.icon or '/usr/share/icons/Arc/actions/24/ok.png'
 
     todo_widget.widget:set_icon(icon)
 
@@ -197,7 +199,7 @@ local function worker(user_args)
 
             local trash_button = wibox.widget {
                 {
-                    {    image = WIDGET_DIR .. '/window-close-symbolic.svg',
+                    {    image = '/usr/share/icons/Arc/actions/24/gtk-no.png',
                         resize = false,
                         widget = wibox.widget.imagebox
                     },
@@ -220,7 +222,7 @@ local function worker(user_args)
 
 
             local move_up = wibox.widget {
-                image = WIDGET_DIR .. '/chevron-up.svg',
+                image = '/usr/share/icons/Arc/actions/24/stock_up.png',
                 resize = false,
                 widget = wibox.widget.imagebox
             }
@@ -235,7 +237,7 @@ local function worker(user_args)
             end)
 
             local move_down = wibox.widget {
-                image = WIDGET_DIR .. '/chevron-down.svg',
+                image = '/usr/share/icons/Arc/actions/24/stock_down.png',
                 resize = false,
                 widget = wibox.widget.imagebox
             }

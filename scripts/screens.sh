@@ -1,3 +1,4 @@
+#!/bin/bash
 # Diffrent monitor configurations
 
 function run {
@@ -21,13 +22,13 @@ laptop() {
     xrandr --auto
 }
 
-# left side laptop, right side monitor via HDMI port
+# left side laptop, right side monitor via usb-c port
 homeL () {
-    xrandr --output eDP-1 --left-of HDMI-2 
+  xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --off --output DP1-1 --off --output DP1-8 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
 }
-# right side laptop, left side monitor via HDMI port
+# right side laptop, left side monitor via usb-c port
 homeR () {
-    xrandr --output eDP-1 --right-of HDMI-2 
+  xrandr --output eDP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP1 --off --output DP1-1 --off --output DP1-8 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --of
 }
 
 # VM development mode

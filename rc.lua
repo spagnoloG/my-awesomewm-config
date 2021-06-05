@@ -19,6 +19,7 @@ local battery_widget = require("widgets.battery")
 local spotify_widget = require("widgets.spotify")
 local cpu_widget = require("widgets.cpu")
 local todo_widget = require("widgets.todo")
+local ram_widget = require("widgets.ram")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -179,7 +180,7 @@ awful.screen.connect_for_each_screen(function(s)
     --set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5"}, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -224,6 +225,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mykeyboardlayout,            
             todo_widget(),
+            ram_widget(),
             cpu_widget(),
             battery_widget(),
             mytextclock,
@@ -336,10 +338,10 @@ globalkeys = gears.table.join(
     awful.util.spawn("rofi -show ssh") end,
               {description = "Connect to ssh", group = "launcher"}),
     
-    -- Firefox
+    -- Brave browser
     awful.key({ modkey },            "b",     function () 
-    awful.util.spawn("firefox-beta") end,
-              {description = "launch firefox", group = "launcher"}),
+    awful.util.spawn("brave") end,
+              {description = "launch brave browser", group = "launcher"}),
 
     -- Spotify
     awful.key({ modkey },            "a",     function () 
@@ -366,11 +368,11 @@ globalkeys = gears.table.join(
 		    {description = "Lock screen", group = "Power options"}),
 
     awful.key({ modkey, "Shift" },            "x",     function ()
-        awful.util.spawn("systemctl suspend") end,
+        awful.util.spawn("sh /home/gasper/.config/awesome/scripts/system.sh suspend_and_lock") end,
             {description = "Suspend system", group = "Power options"}),
     
     awful.key({ modkey, "Shift" },            "c",     function ()
-        awful.util.spawn("systemctl hibernate") end,
+        awful.util.spawn("sh /home/gasper/.config/awesome/scripts/system.sh hibernate_and_lock") end,
             {description = "Put system into hibernation mode", group = "Power options"}),
     --volume
     awful.key({ }, "#122", function () awful.util.spawn("sh /home/gasper/.config/awesome/scripts/keybindings.sh change_volume -4") end),
@@ -553,6 +555,7 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+       { rule = { class = "lightcord" }, properties = { screen = 1, tag = "6"} },
 }
 -- }}}
 
@@ -621,10 +624,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps
-beautiful.useless_gap = 5
+beautiful.useless_gap = 4
 
 -- Set monitor setup
-awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh lj")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh homeR")
 
 -- Autostart
 awful.spawn.with_shell("picom")
