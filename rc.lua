@@ -626,6 +626,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps
 beautiful.useless_gap = 4
 
+--Make notifications smaller
+beautiful.notification_icon_size = 100
 -- Set monitor setup
 awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh homeR")
 
