@@ -629,7 +629,7 @@ beautiful.useless_gap = 4
 --Make notifications smaller
 beautiful.notification_icon_size = 100
 -- Set monitor setup
-awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh homeR")
+awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/screens.sh lj")
 
 -- Autostart
 awful.spawn.with_shell("picom")
