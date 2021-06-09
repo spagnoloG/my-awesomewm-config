@@ -16,6 +16,8 @@ papirus-icon-theme
 brightnessctl
 // polkit agent
 polkit-gnome
+// Clipboard indicator
+clipit
 *change rofi theme
 rofi-theme-selector
 

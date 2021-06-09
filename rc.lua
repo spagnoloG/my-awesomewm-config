@@ -17,9 +17,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Widgets
 local battery_widget = require("widgets.battery")
 local spotify_widget = require("widgets.spotify")
-local cpu_widget = require("widgets.cpu")
+--local cpu_widget = require("widgets.cpu")
 local todo_widget = require("widgets.todo")
-local ram_widget = require("widgets.ram")
+--local ram_widget = require("widgets.ram")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -180,7 +180,7 @@ awful.screen.connect_for_each_screen(function(s)
     --set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6"}, s, awful.layout.layouts[1])
+    awful.tag({ "I", "II", "III", "IV", "V", "VI"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -225,8 +225,8 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mykeyboardlayout,            
             todo_widget(),
-            ram_widget(),
-            cpu_widget(),
+            --ram_widget(),
+            --cpu_widget(),
             battery_widget(),
             mytextclock,
             s.mylayoutbox,
@@ -637,8 +637,14 @@ awful.spawn.with_shell("picom")
 --awful.spawn.with_shell("~/.config/awesome/launch-polybar.sh")
 -- Start network manager applet
 awful.spawn.with_shell("nm-applet")
+-- Start pulseaudio applet
+awful.spawn.with_shell("pa-applet")
+-- Start clipboard applet
+awful.spawn.with_shell("clipit &")
 -- Set wallpaper
 awful.spawn.with_shell("sh /home/gasper/.config/awesome/scripts/set-wallpaper.sh")
 -- Start polkit agent
 awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &")
+-- Enable GPU offload
+awful.spawn.with_shell("xrandr --setprovideroffloadsink 1 0")
 
